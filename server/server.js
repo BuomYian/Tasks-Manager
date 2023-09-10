@@ -1,6 +1,7 @@
 import express from 'express';
 
 const app = express();
+require('../database/db');
 
 const port = 4000;
 
