@@ -1,7 +1,7 @@
 import './App.css';
 
 function App() {
-  return <div>Hello There</div>;
+  return <div>Tasks Manager</div>;
 }
 
 export default App;
