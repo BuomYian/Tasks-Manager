@@ -1,20 +1,17 @@
 {
-  "name": "tasks-manager",
-  "type": "module",
+  "name": "tasks",
   "version": "1.0.0",
-  "description": "## Tasks",
-  "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "client": "npm --cwd client dev",
-    "server": " nodemon server/server.js",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "main": "index.js",
+  "repository": "https://github.com/BuomYian/Tasks-Manager.git",
+  "author": "Buomkuoth Yian <buom.nyajal@gmail.com>",
+  "license": "MIT",
   "dependencies": {
     "concurrently": "^8.2.1",
     "nodemon": "^3.0.1"
+  },
+  "scripts": {
+    "client": "yarn --cwd client dev",
+    "server": " nodemon server/server.js",
+    "dev": "concurrently \"yarn server\" \"yarn client\""
   }
 }
