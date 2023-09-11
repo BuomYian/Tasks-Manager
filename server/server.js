@@ -1,9 +1,11 @@
 import express from 'express';
+import { connectdb } from '../database/db';
 
 const app = express();
-require('../database/db');
 
 const port = 4000;
+
+connectdb();
 
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);

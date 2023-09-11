@@ -1,7 +1,8 @@
 {
   "name": "database",
+  "type": "module",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "db.js",
   "license": "MIT",
   "dependencies": {
     "mongoose": "^7.5.0"

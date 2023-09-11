@@ -6,11 +6,13 @@ const options = {
   useUnifiedTopology: true,
 };
 
-mongoose
-  .connect(mongoURI, options)
-  .then(() => {
-    console.log(`Connected to MongoDB`);
-  })
-  .catch((error) => {
-    console.error(`Error connecting to MongoDb:`, error);
-  });
+export const connectdb = () => {
+  mongoose
+    .connect(mongoURI, options)
+    .then(() => {
+      console.log(`Connected to MongoDB`);
+    })
+    .catch((error) => {
+      console.error(`Error connecting to MongoDB:`, error);
+    });
+};
