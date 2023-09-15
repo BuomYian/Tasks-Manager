@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 const initialState = {
   isLoading: false,
@@ -39,3 +40,33 @@ export const {
 } = authSlice.actions;
 
 export default authSlice.reducer;
+
+export const register = (user) => async (dispatch) => {
+  try {
+    const formData = new FormData();
+
+    formData.append('username', user.username);
+    formData.append('email', user.email);
+    formData.append('password', user.password);
+
+    const config = {
+      headers: {
+        'content-type': 'application/json',
+      },
+    };
+
+    const response = await axios.post(
+      'http://localhost:4000/auth/register',
+      formData,
+      config
+    );
+
+    if (response) {
+      dispatch(registerSuccess(response.data));
+    } else {
+      dispatch(registerFailure());
+    }
+  } catch (error) {
+    dispatch(registerFailure());
+  }
+};
