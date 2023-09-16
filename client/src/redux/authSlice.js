@@ -43,12 +43,6 @@ export default authSlice.reducer;
 
 export const register = (user) => async (dispatch) => {
   try {
-    const formData = new FormData();
-
-    formData.append('username', user.username);
-    formData.append('email', user.email);
-    formData.append('password', user.password);
-
     const config = {
       headers: {
         'content-type': 'application/json',
@@ -57,16 +51,18 @@ export const register = (user) => async (dispatch) => {
 
     const response = await axios.post(
       'http://localhost:4000/auth/register',
-      formData,
+      user,
       config
     );
 
     if (response) {
+      console.log('Success');
       dispatch(registerSuccess(response.data));
     } else {
       dispatch(registerFailure());
     }
   } catch (error) {
+    console.log(error);
     dispatch(registerFailure());
   }
 };

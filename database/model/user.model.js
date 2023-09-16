@@ -7,7 +7,7 @@ const userSchema = mongoose.Schema(
     email: { type: String },
     password: { type: String },
   },
-  { timeStamp: true }
+  { timestamp: true }
 );
 
 userSchema.pre('save', function (next) {
@@ -24,6 +24,7 @@ userSchema.pre('save', function (next) {
     return next();
   }
 });
+
 userSchema.methods.comparePassword = function (password, next) {
   bcrypt.compare(password, this.password, function (err, match) {
     if (err) {

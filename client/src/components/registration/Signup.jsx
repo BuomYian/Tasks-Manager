@@ -29,7 +29,7 @@ const Signup = () => {
       [e.target.name]: e.target.value,
     });
   };
-
+  console.log(state.email, state.username, state.password);
   return (
     <div>
       <div className="signup-form">
