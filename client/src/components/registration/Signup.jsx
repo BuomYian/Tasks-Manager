@@ -2,10 +2,10 @@ import './registration.scss';
 import '../../styles/components/_button.scss';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { register } from '../../redux/authSlice.js';
+import { register } from '../../redux/authSlice';
 
 const Signup = () => {
-  const dispatch = useDispatch;
+  const dispatch = useDispatch();
   const [state, setState] = useState({
     email: '',
     password: '',
@@ -13,7 +13,7 @@ const Signup = () => {
   });
 
   const handleSubmit = (e) => {
-    e.prevetDefault();
+    e.preventDefault();
 
     dispatch(
       register({
@@ -29,48 +29,47 @@ const Signup = () => {
       [e.target.name]: e.target.value,
     });
   };
-  console.log(state.email, state.username, state.password);
+
+  console.log(state.email, state.password, state.username);
   return (
-    <div>
-      <div className="signup-form">
-        <div className="signup-form__wrapper">
-          <form className="form" onSubmit={handleSubmit}>
-            <h4>Sign up</h4>
-            <br />
-            <div className="form-group">
-              <input
-                type="text"
-                name="username"
-                value={state.username}
-                placeholder="Enter Name"
-                onChange={handleChange}
-              />
-            </div>
-            <div className="form-group">
-              <input
-                type="email"
-                name="email"
-                value={state.email}
-                id=""
-                placeholder="Enter Email"
-                onChange={handleChange}
-              />
-            </div>
-            <div className="form-group">
-              <input
-                type="password"
-                name="password"
-                value={state.password}
-                id=""
-                placeholder="Enter password"
-                onChange={handleChange}
-              />
-            </div>
-            <div className="form-group">
-              <button className="button">Sign up</button>
-            </div>
-          </form>
-        </div>
+    <div className="signup-form">
+      <div className="signup-form__wrapper">
+        <form className="form" onSubmit={handleSubmit}>
+          <h4>Sign up</h4>
+
+          <div className="form-group">
+            <input
+              type="text"
+              placeholder="Enter Name"
+              name="username"
+              value={state.username}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="form-group">
+            <input
+              type="email"
+              name="email"
+              value={state.email}
+              id=""
+              placeholder="Enter Email"
+              onChange={handleChange}
+            />
+          </div>
+          <div className="form-group">
+            <input
+              type="password"
+              name="password"
+              value={state.password}
+              id=""
+              placeholder="Enter Password"
+              onChange={handleChange}
+            />
+          </div>
+          <div className="form-group">
+            <button className="button">Sign Up</button>
+          </div>
+        </form>
       </div>
     </div>
   );

@@ -6,10 +6,10 @@ import morgan from 'morgan';
 
 const app = express();
 connectdb();
-app.use(cors);
+app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json());
-app.use('auth', authRoutes);
+app.use('/auth', authRoutes);
 
 const port = 4000;
 

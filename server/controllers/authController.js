@@ -60,6 +60,7 @@ const register = async (req, res) => {
     await user.save();
     return res.status(200).send(user);
   } catch (error) {
+    console.log(error.message);
     return res, statusbar(400).send('Error creating user');
   }
 };

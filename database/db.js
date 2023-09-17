@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const mongoURI = 'mongodb://127.0.0.1:27017/task-manager';
+const mongoURI = 'mongodb://127.0.0.1:27017/Task-manager';
 const options = {
   useNewUrlParser: true,
   useUnifiedTopology: true,

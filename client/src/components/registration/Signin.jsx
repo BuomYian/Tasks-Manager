@@ -1,7 +1,11 @@
 import './registration.scss';
 import '../../styles/components/_button.scss';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { signin } from '../../redux/authSlice';
+
 const Signin = () => {
+  const dispatch = useDispatch();
   const [state, setState] = useState({
     email: '',
     password: '',
@@ -14,11 +18,21 @@ const Signin = () => {
     });
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(
+      signin({
+        email: state.email,
+        password: state.password,
+      })
+    );
+  };
+
   return (
     <div>
       <div className="signup-form">
         <div className="signup-form__wrapper">
-          <form className="form">
+          <form className="form" onSubmit={handleSubmit}>
             <h4>Sign in</h4>
             <br />
             <div className="form-group">
@@ -26,7 +40,6 @@ const Signin = () => {
                 type="email"
                 name="email"
                 value={state.email}
-                id=""
                 placeholder="Enter Email"
                 onChange={handleChange}
               />
@@ -36,7 +49,6 @@ const Signin = () => {
                 type="password"
                 name="password"
                 value={state.password}
-                id=""
                 placeholder="Enter password"
                 onChange={handleChange}
               />
