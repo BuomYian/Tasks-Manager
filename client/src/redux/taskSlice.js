@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import history from '../history';
 import axios from 'axios';
 
 const initialTask = localStorage.getItem('task')
@@ -51,3 +50,18 @@ export const {
 } = taskSlice.actions;
 
 export default taskSlice.reducer;
+
+export const addTask = (task, id) => async (dispatch) => {
+  const taskData = {
+    task,
+    id,
+  };
+  const response = await axios.post('http://localhost:4000/task/add', taskData);
+  if (response) {
+    localStorage.setItem('task', JSON.stringify(response.data));
+    dispatch(taskAddedSuccessfully(response.data));
+    window.location.reload();
+  } else {
+    dispatch(taskAddFailure());
+  }
+};
