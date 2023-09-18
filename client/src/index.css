@@ -8,3 +8,13 @@ body {
   font-family: 'Roboto', sans-serif;
   /* font-size: 62.5%; */
 }
+
+a {
+  text-decoration: none;
+  color: inherit;
+  font-size: 1rem;
+}
+
+li {
+  list-style: none;
+}
