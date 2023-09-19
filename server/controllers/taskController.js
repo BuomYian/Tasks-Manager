@@ -18,8 +18,70 @@ const addTask = async (req, res) => {
     await taskDetail.save();
     return res.status(200).send(taskDetail);
   } catch (error) {
-    return res.status(400).send('task addion failed');
+    return res.status(400).send('task addition failed');
   }
 };
 
-export default { addTask };
+const getAllTasks = async (req, res) => {
+  const { id } = req.query;
+  try {
+    let tasklist = await Task.find({ createdBy: id });
+    console.log(tasklist);
+    return res.status(200).send(tasklist);
+  } catch (error) {
+    return res.status(400).send(error);
+  }
+};
+
+const editTask = async (req, res) => {};
+
+const statusChange = async (req, res) => {
+  const { id, string } = req.body;
+
+  try {
+    let task = await Task.findById({ _id: id });
+    if (string === 'right') {
+      if (task.status === 'backlog') {
+        task.status = 'todo';
+        task.save();
+        return res.send(task);
+      } else if (task.status === 'todo') {
+        task.status = 'doing';
+        task.save();
+        return res.send(task);
+      } else if (task.status === 'doing') {
+        task.status = 'done';
+        task.save();
+        return res.send(task);
+      }
+    } else {
+      if (task.status === 'done') {
+        task.status = 'doing';
+        task.save();
+        return res.send(task);
+      } else if (task.status === 'doing') {
+        task.status = 'todo';
+        task.save();
+        return res.send(task);
+      } else if (task.status === 'todo') {
+        task.status = 'backlog';
+        task.save();
+        return res.send(task);
+      }
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const deleteTask = async (req, res) => {
+  const { id } = req.params;
+  try {
+    let response = await Task.findByIdAndDelete(id);
+    return res.status(200).send(response);
+  } catch (error) {
+    res.status(400).send('delete failed');
+  }
+};
+
+export default { addTask, getAllTasks, editTask, statusChange, deleteTask };

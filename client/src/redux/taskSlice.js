@@ -21,7 +21,7 @@ export const taskSlice = createSlice({
     taskAddFailure: (state) => {
       return state;
     },
-    getAllSuccess: (state, action) => {
+    getAllTaskSuccess: (state, action) => {
       state.AllTasks = action.payload;
     },
     getAllTaskFailure: (state) => {
@@ -42,7 +42,7 @@ export const taskSlice = createSlice({
 export const {
   taskAddFailure,
   taskAddedSuccessfully,
-  getAllSuccess,
+  getAllTaskSuccess,
   getAllTaskFailure,
   editTaskSuccess,
   deleteSuccess,
@@ -63,5 +63,62 @@ export const addTask = (task, id) => async (dispatch) => {
     window.location.reload();
   } else {
     dispatch(taskAddFailure());
+  }
+};
+
+export const getAlltasks = (token, id) => async (dispatch) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    params: {
+      id,
+    },
+  };
+  try {
+    const response = await axios.get(
+      'http://localhost:4000/task/tasks',
+      config
+    );
+    console.log(response);
+    if (response) {
+      dispatch(getAllTaskSuccess(response.data));
+    }
+  } catch (error) {
+    if (error.response.status === 200) {
+      dispatch(getAllTaskFailure());
+    }
+  }
+};
+
+export const arrowClick = (item, string) => async () => {
+  let taskData = {
+    id: item._id,
+    status: item.status,
+    string,
+  };
+
+  try {
+    let response = await axios.put(
+      `http://localhost:4000/task/${taskData.id}`,
+      taskData
+    );
+
+    if (response) {
+      window.location.reload();
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const deleteItem = (id) => async (dispatch) => {
+  let res = await axios.delete(`http://localhost:4000/task/${id}`);
+
+  if (res) {
+    dispatch(deleteSuccess());
+    window.location.reload();
+  } else {
+    dispatch(deleteFail());
   }
 };
