@@ -13,12 +13,13 @@ const Sidebar = () => {
           <h4>{currentUser.username}</h4>
         </li>
         <li className="list-item">
-          <Link to="/dashboard" />
-          Dashboard
+          <Link to="/">Home</Link>
         </li>
         <li className="list-item">
-          <Link to="/setting" />
-          Settings
+          <Link to="/dashboard">Dashboard</Link>
+        </li>
+        <li className="list-item">
+          <Link to="/setting">Settings</Link>
         </li>
       </ul>
     </div>

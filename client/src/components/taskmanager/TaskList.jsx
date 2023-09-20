@@ -19,13 +19,13 @@ const TaskList = () => {
     <div>
       <ul className="list-header">
         <li>
-          <h5>Id</h5>
+          <h5>Task Id</h5>
         </li>
         <li>
-          <h5>Issue Name</h5>
+          <h5>Task Name</h5>
         </li>
         <li>
-          <h5>Status</h5>
+          <h5>Task Status</h5>
         </li>
         <li>
           <h5>Action</h5>

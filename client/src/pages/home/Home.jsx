@@ -1,7 +1,7 @@
 import './home.scss';
-
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+
 const Home = () => {
   const { auth } = useSelector((state) => ({ ...state }));
   const { currentUser } = auth;

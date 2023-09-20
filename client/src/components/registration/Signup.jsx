@@ -36,7 +36,7 @@ const Signup = () => {
       <div className="signup-form__wrapper">
         <form className="form" onSubmit={handleSubmit}>
           <h4>Sign up</h4>
-
+          <br />
           <div className="form-group">
             <input
               type="text"

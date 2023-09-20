@@ -6,20 +6,43 @@ import Signup from './components/registration/Signup';
 import Home from './pages/home/Home';
 import Dashboard from './pages/dashboard/Dashboard';
 import TaskManager from './pages/taskmanagement/TaskManager';
+import RequireAuth from './utils/RequireAuth';
+import { useSelector } from 'react-redux';
 
 // import './styles/main.scss';
 
 function App() {
+  const { auth } = useSelector((state) => ({ ...state }));
   return (
     <div>
       <Router>
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/signin" element={<Signin />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/taskmanager" element={<TaskManager />} />
+          <Route
+            path="/signin"
+            element={!auth.currentUser ? <Signin /> : <Dashboard />}
+          />
+          <Route
+            path="/signup"
+            element={!auth.currentUser ? <Signup /> : <Dashboard />}
+          />
+          <Route
+            path="/dashboard"
+            element={
+              <RequireAuth>
+                <Dashboard />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/taskmanager"
+            element={
+              <RequireAuth>
+                <TaskManager />
+              </RequireAuth>
+            }
+          />
         </Routes>
       </Router>
     </div>

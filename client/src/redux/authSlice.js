@@ -76,7 +76,6 @@ export const register = (user) => async (dispatch) => {
 };
 
 export const signin = (user) => async (dispatch) => {
-  console.log(user);
   try {
     const userData = {
       email: user.email,

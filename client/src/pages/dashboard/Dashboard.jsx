@@ -1,8 +1,31 @@
 import Sidebar from '../../components/sidebar/Sidebar';
 import { Link } from 'react-router-dom';
 import './dashboard.scss';
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { getAlltasks } from '../../redux/taskSlice';
 
 const Dashboard = () => {
+  const tasklist = useSelector((state) => state.task);
+  const { AllTasks } = tasklist;
+  const user = useSelector((state) => state.auth);
+  const { currentUser } = user;
+
+  let pendingTask = [];
+  let completedTask = [];
+  for (let i = 0; i < AllTasks.length; i++) {
+    if (AllTasks[i].status === 'todo') {
+      pendingTask.push(AllTasks[i]);
+    } else if (AllTasks[i].status === 'done') {
+      completedTask.push(AllTasks[i]);
+    }
+  }
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getAlltasks(currentUser.token, currentUser.id));
+  }, [dispatch, currentUser.token, currentUser.id]);
+
   return (
     <div>
       <div className="dashboard">
@@ -13,9 +36,8 @@ const Dashboard = () => {
           <div className="dashboard__rightContent">
             <h2>Task Status Dashboard</h2>
             <div className="taskcount">
-              <div className="todo box">todo</div>
-              <div className="doing box">doing</div>
-              <div className="done box">done</div>
+              <div className="todo box">Todo - {pendingTask.length}</div>
+              <div className="done box">Completed - {completedTask.length}</div>
             </div>
             <div className="createButton">
               <Link to="/taskmanager" className="button">
