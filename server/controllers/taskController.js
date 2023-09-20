@@ -1,4 +1,3 @@
-import User from '../../database/model/user.model.js';
 import Task from '../../database/model/task.model.js';
 
 const addTask = async (req, res) => {
@@ -26,7 +25,6 @@ const getAllTasks = async (req, res) => {
   const { id } = req.query;
   try {
     let tasklist = await Task.find({ createdBy: id });
-    console.log(tasklist);
     return res.status(200).send(tasklist);
   } catch (error) {
     return res.status(400).send(error);

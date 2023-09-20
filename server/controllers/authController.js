@@ -6,7 +6,6 @@ const signin = async (req, res) => {
   let { email, password } = req.body;
   try {
     let user = await User.findOne({ email });
-    console.log(user, req.body);
     if (!user) {
       return res.status(400).send('email does not exist');
     }
@@ -32,7 +31,6 @@ const signin = async (req, res) => {
 };
 
 const register = async (req, res) => {
-  console.log(req.body, 'req');
   const { username, password, email } = req.body;
   try {
     if (!username) return res.status(400).send('username is required');
@@ -60,7 +58,6 @@ const register = async (req, res) => {
     await user.save();
     return res.status(200).send(user);
   } catch (error) {
-    console.log(error.message);
     return res, statusbar(400).send('Error creating user');
   }
 };
