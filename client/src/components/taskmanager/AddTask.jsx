@@ -33,7 +33,7 @@ const AddTask = () => {
           <input
             type="text"
             name="task"
-            placeholder="add your task"
+            placeholder="Add your task"
             onChange={handleChange}
             value={state.task}
           />
