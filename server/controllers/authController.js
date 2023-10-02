@@ -58,7 +58,7 @@ const register = async (req, res) => {
     await user.save();
     return res.status(200).send(user);
   } catch (error) {
-    return res, statusbar(400).send('Error creating user');
+    return res, statusbar(400).send('Error creating user', error);
   }
 };
 export default {
