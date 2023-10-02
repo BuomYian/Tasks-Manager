@@ -13,8 +13,8 @@ app.use(express.json());
 app.use('/auth', authRoutes);
 app.use('/task', taskRouter);
 
-const port = 4000;
+const PORT = 4000;
 
-app.listen(port, () => {
-  console.log(`Server is running on port: ${port}`);
+app.listen(PORT, () => {
+  console.log(`Server is running on port: ${PORT}`);
 });

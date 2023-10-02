@@ -9,8 +9,6 @@ import TaskManager from './pages/taskmanagement/TaskManager';
 import RequireAuth from './utils/RequireAuth';
 import { useSelector } from 'react-redux';
 
-// import './styles/main.scss';
-
 function App() {
   const { auth } = useSelector((state) => ({ ...state }));
   return (
