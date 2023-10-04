@@ -1,5 +1,5 @@
 {
-  "name": "tasks",
+  "name": "tasks-manager",
   "version": "1.0.0",
   "main": "index.js",
   "repository": "https://github.com/BuomYian/Tasks-Manager.git",
