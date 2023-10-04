@@ -2,10 +2,6 @@
 
 # Tasks Manager
 
-Tasks Manager is a web application built using the MERN stack (MongoDB, Express.js, React, and Node.js) to help you manage your tasks and stay organized.
-
-## Overview
-
 The Tasks-Manager web application is a task management tool that allows users to efficiently manage their to-do tasks. It includes user authentication for registration and sign-in and provides users with a personalized dashboard to view their completed and pending tasks.
 
 ## Features
