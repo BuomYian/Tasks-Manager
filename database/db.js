@@ -1,7 +1,8 @@
 import mongoose from 'mongoose';
 
 // MongoDB connection URI
-const mongoURI = 'mongodb://127.0.0.1:27017/Task-manager';
+const mongoURI =
+  'mongodb+srv://fashion_stylist:kJvoviveyJa5Np9l@cluster0.jsq031p.mongodb.net/Task-Manager?retryWrites=true&w=majority';
 
 // MongoDB connection options
 const options = {
