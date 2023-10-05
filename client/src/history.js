@@ -1,3 +1,4 @@
 import { createBrowserHistory } from 'history';
 
-export default createBrowserHistory({ forceRefresh: true });
+// Create a custom browser history object with forceRefresh set to false
+export default createBrowserHistory({ forceRefresh: false });

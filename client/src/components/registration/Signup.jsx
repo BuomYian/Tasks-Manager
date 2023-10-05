@@ -1,32 +1,38 @@
-import './registration.scss';
-import '../../styles/components/_button.scss';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { register } from '../../redux/authSlice';
+// Import necessary stylesheets and libraries
+import './registration.scss'; // Styles for the registration component
+import '../../styles/components/_button.scss'; // Styles for buttons
+import { useState } from 'react'; // Import React useState hook for managing state
+import { useDispatch } from 'react-redux'; // Import Redux useDispatch hook for dispatching actions
+import { register } from '../../redux/authSlice'; // Import Redux action 'register' from 'authSlice'
 
+// Define the Signup functional component
 const Signup = () => {
   const dispatch = useDispatch();
+  // Initialize state using the useState hook to manage username, email, and password input fields
   const [state, setState] = useState({
+    username: '',
     email: '',
     password: '',
-    username: '',
   });
 
+  // Define a function to handle form submission
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Prevent the default form submission behavior
 
     dispatch(
       register({
         username: state.username,
-        password: state.password,
         email: state.email,
+        password: state.password,
       })
-    );
+    ); // Dispatch the 'register' action with username, email, and password from the state
   };
+
+  // Define a function to handle input field changes
   const handleChange = (e) => {
     setState({
       ...state,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value, // Update the state with the new input value
     });
   };
 
@@ -43,7 +49,7 @@ const Signup = () => {
               placeholder="Enter Name"
               name="username"
               value={state.username}
-              onChange={handleChange}
+              onChange={handleChange} // Handle changes in the username input field
             />
           </div>
           <div className="form-group">
@@ -52,7 +58,7 @@ const Signup = () => {
               name="email"
               value={state.email}
               placeholder="Enter Email"
-              onChange={handleChange}
+              onChange={handleChange} // Handle changes in the email input field
             />
           </div>
           <div className="form-group">
@@ -61,11 +67,11 @@ const Signup = () => {
               name="password"
               value={state.password}
               placeholder="Enter Password"
-              onChange={handleChange}
+              onChange={handleChange} // Handle changes in the password input field
             />
           </div>
           <div className="form-group">
-            <button className="button">Sign Up</button>
+            <button className="button">Sign Up</button> {/* Submit the form */}
           </div>
         </form>
       </div>
@@ -73,4 +79,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default Signup; // Export the Signup component for use in other parts of the application

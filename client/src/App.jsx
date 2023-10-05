@@ -10,13 +10,20 @@ import RequireAuth from './utils/RequireAuth';
 import { useSelector } from 'react-redux';
 
 function App() {
+  // Use useSelector to access the authentication state from Redux store
   const { auth } = useSelector((state) => ({ ...state }));
+
   return (
     <div>
       <Router>
+        {/* Render the Header component at the top of the application */}
         <Header />
+
         <Routes>
+          {/* Define routes for different pages and components */}
           <Route path="/" element={<Home />} />
+
+          {/* Route for Signin and Signup pages with conditional rendering */}
           <Route
             path="/signin"
             element={!auth.currentUser ? <Signin /> : <Dashboard />}
@@ -25,6 +32,8 @@ function App() {
             path="/signup"
             element={!auth.currentUser ? <Signup /> : <Dashboard />}
           />
+
+          {/* Route for the Dashboard page with authentication protection */}
           <Route
             path="/dashboard"
             element={
@@ -33,6 +42,8 @@ function App() {
               </RequireAuth>
             }
           />
+
+          {/* Route for the TaskManager page with authentication protection */}
           <Route
             path="/taskmanager"
             element={
